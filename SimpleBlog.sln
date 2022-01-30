@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBlog.Web", "SimpleBlog.Web\SimpleBlog.Web.csproj", "{AF0EA71D-31A0-4916-9182-1AC217424753}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBlog.Entities", "SimpleBlog.Entities\SimpleBlog.Entities.csproj", "{A1E846C1-3A0B-4432-B043-16260EB60295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBlog.Data", "SimpleBlog.Data\SimpleBlog.Data.csproj", "{00FD0009-005A-45DA-BB8F-22711AAE6862}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{AF0EA71D-31A0-4916-9182-1AC217424753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF0EA71D-31A0-4916-9182-1AC217424753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF0EA71D-31A0-4916-9182-1AC217424753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1E846C1-3A0B-4432-B043-16260EB60295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1E846C1-3A0B-4432-B043-16260EB60295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1E846C1-3A0B-4432-B043-16260EB60295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1E846C1-3A0B-4432-B043-16260EB60295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00FD0009-005A-45DA-BB8F-22711AAE6862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FD0009-005A-45DA-BB8F-22711AAE6862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FD0009-005A-45DA-BB8F-22711AAE6862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FD0009-005A-45DA-BB8F-22711AAE6862}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
