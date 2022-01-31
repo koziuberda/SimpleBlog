@@ -1,0 +1,15 @@
+@model IEnumerable<ReadablePostModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Posts</h1>
+
+@foreach (var post in Model)
+{
+    <div>
+        <h2>@Html.DisplayFor(model => post.Title)</h2>
+        <p>@Html.DisplayFor(model => post.Text)</p>
+    </div>
+}

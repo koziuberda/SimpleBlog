@@ -1,0 +1,41 @@
+@model SimpleBlog.Web.Models.PostViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Post</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.CreationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.CreationDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Post.Text)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Post.Text)
+        </dd>
+    </dl>
+    @foreach (var comment in Model.Comments)
+    {
+        <p>@comment.Author</p>
+        <i>@comment.Date</i>
+        <p>@comment.Text</p>
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

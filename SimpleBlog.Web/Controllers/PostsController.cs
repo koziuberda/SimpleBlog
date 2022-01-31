@@ -38,7 +38,10 @@ namespace SimpleBlog.Web.Controllers
                 return NotFound();
             }
 
-            return View(post);
+            var postModel = new ReadablePostModel(post);
+            var comments = post.Comments.Select(c => new ReadableCommentModel(c)).ToList();
+
+            return View(new PostViewModel(postModel, comments));
         }
         
         // GET: Posts/Create
