@@ -5,19 +5,19 @@ namespace SimpleBlog.Data.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(ApplicationContext context, IUserRepository userRepository, IPostRepository messageRepository, ICommentRepository roomRepository)
+        public UnitOfWork(ApplicationContext context, IUserRepository userRepository, IPostRepository postRepository, ICommentRepository commentRepository)
         {
             _context = context;
             UserRepository = userRepository;
-            MessageRepository = messageRepository;
-            RoomRepository = roomRepository;
+            PostRepository = postRepository;
+            CommentRepository = commentRepository;
         }
 
         private ApplicationContext _context;
 
         public IUserRepository UserRepository { get; }
-        public IPostRepository MessageRepository { get; }
-        public ICommentRepository RoomRepository { get; }
+        public IPostRepository PostRepository { get; }
+        public ICommentRepository CommentRepository { get; }
 
         public async Task SaveChangesAsync()
         {

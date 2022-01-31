@@ -6,8 +6,8 @@ namespace SimpleBlog.Data.UnitOfWork
     public interface IUnitOfWork
     {
         IUserRepository UserRepository { get; }
-        IPostRepository MessageRepository { get; }
-        ICommentRepository RoomRepository { get; }
+        IPostRepository PostRepository { get; }
+        ICommentRepository CommentRepository { get; }
         Task SaveChangesAsync();
     }
 }
