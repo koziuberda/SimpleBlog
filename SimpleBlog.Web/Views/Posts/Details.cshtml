@@ -35,6 +35,9 @@
         <i>@comment.Date</i>
         <p>@comment.Text</p>
     }
+
+    @{ await Html.RenderPartialAsync("_newComment", Model.NewComment); }
+    
 </div>
 <div>
     <a asp-action="Index">Back to List</a>

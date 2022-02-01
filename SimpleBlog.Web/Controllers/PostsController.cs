@@ -39,9 +39,14 @@ namespace SimpleBlog.Web.Controllers
             }
 
             var postModel = new ReadablePostModel(post);
-            var comments = post.Comments.Select(c => new ReadableCommentModel(c)).ToList();
-
-            return View(new PostViewModel(postModel, comments));
+            var comments = post.Comments.
+                Select(c => new ReadableCommentModel(c))
+                .ToList();
+            
+            // TODO: implement evaluating correct UserId via authorisation
+            var newComment = new WritableCommentModel {PostId = postModel.Id, UserId = 1};
+            
+            return View(new PostViewModel(postModel, comments, newComment));
         }
         
         // GET: Posts/Create
