@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SimpleBlog.Entities;
 using SimpleBlog.Web.Models;
+using SimpleBlog.Web.ViewModels;
 
 namespace SimpleBlog.Web.Controllers
 {

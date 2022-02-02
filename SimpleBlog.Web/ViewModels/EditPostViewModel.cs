@@ -1,4 +1,6 @@
-namespace SimpleBlog.Web.Models
+using SimpleBlog.Web.Models;
+
+namespace SimpleBlog.Web.ViewModels
 {
     public class EditPostViewModel
     {

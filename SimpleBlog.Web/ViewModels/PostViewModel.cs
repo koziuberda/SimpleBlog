@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using SimpleBlog.Web.Models;
 
-namespace SimpleBlog.Web.Models
+namespace SimpleBlog.Web.ViewModels
 {
     public class PostViewModel
     {

@@ -10,6 +10,7 @@ using SimpleBlog.Data;
 using SimpleBlog.Data.UnitOfWork;
 using SimpleBlog.Entities;
 using SimpleBlog.Web.Models;
+using SimpleBlog.Web.ViewModels;
 
 namespace SimpleBlog.Web.Controllers
 {

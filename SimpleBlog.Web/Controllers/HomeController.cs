@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SimpleBlog.Web.Models;
+using SimpleBlog.Web.ViewModels;
 
 namespace SimpleBlog.Web.Controllers
 {
