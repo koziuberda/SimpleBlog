@@ -3,42 +3,54 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - SimpleBlog.Web</title>
+    <title>@ViewData["Title"] - SimpleBlog</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
+    <link href="~/Content/blog.css" rel="stylesheet" />
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SimpleBlog.Web</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" href="#">Simple Blog</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                @if (User.Identity.IsAuthenticated){
+                    <a class="btn btn-sm btn-outline-secondary" 
+                       asp-controller="Account" asp-action="Logout">[@User.Identity.Name] - Logout</a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-outline-secondary" 
+                       asp-controller="Account" asp-action="Login">Login</a>
+                }
             </div>
         </div>
-    </nav>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
+    </header>
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex">
+            <a class="p-2 text-muted" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="p-2 text-muted" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            @if (User.IsInRole("Administrator"))
+            {
+                <a class="p-2 text-muted" asp-area="" asp-controller="Posts" asp-action="Create">Write new post</a>
+            }
+        </nav>
+    </div>
 </div>
 
-<footer class="border-top footer text-muted">
+<main role="main" class="container">
+    @RenderBody()
+</main>
+
+<footer class="blog-footer">
     <div class="container">
         &copy; 2022 - SimpleBlog.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

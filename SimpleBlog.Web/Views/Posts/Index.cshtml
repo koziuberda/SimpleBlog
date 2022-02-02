@@ -3,13 +3,16 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Posts</h1>
-
+<div class="row">
+        <div class="col-md-8 blog-main">
 @foreach (var post in Model)
 {
-    <div>
-        <h2>@Html.DisplayFor(model => post.Title)</h2>
-        <p>@Html.DisplayFor(model => post.Text)</p>
+    <div class="blog-post">
+        <h2 class="blog-post-title">@post.Title</h2>
+        <p class="blog-post-meta">@post.CreationDate</p>
+        <p>@post.Text</p>
+        @Html.ActionLink("See the full post", "Details", new { id = post.Id })
     </div>
 }
+        </div>
+</div>

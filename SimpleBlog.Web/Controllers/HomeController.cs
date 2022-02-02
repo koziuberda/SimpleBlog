@@ -21,7 +21,7 @@ namespace SimpleBlog.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return LocalRedirect( "/Posts");;
         }
 
         public IActionResult Privacy()
