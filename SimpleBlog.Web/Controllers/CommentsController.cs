@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SimpleBlog.Data;
@@ -30,6 +33,7 @@ namespace SimpleBlog.Web.Controllers
         // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(WritableCommentModel writableComment)
@@ -39,7 +43,7 @@ namespace SimpleBlog.Web.Controllers
                 var comment = new Comment
                 {
                     PostId = writableComment.PostId,
-                    UserId = writableComment.UserId,
+                    UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                     Text = writableComment.Text,
                     CreationDate = DateTime.Now
                 };

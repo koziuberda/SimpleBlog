@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -44,12 +45,16 @@ namespace SimpleBlog.Web.Controllers
                 .ToList();
             
             // TODO: implement evaluating correct UserId via authorisation
-            var newComment = new WritableCommentModel {PostId = postModel.Id, UserId = 1};
+            var newComment = new WritableCommentModel
+            {
+                PostId = postModel.Id
+            };
             
             return View(new PostViewModel(postModel, comments, newComment));
         }
         
         // GET: Posts/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +63,7 @@ namespace SimpleBlog.Web.Controllers
         // POST: Posts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(WritablePostModel writablePost)
@@ -74,6 +80,7 @@ namespace SimpleBlog.Web.Controllers
         }
         
         // GET: Posts/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int id)
         {
             var post = await _unitOfWork.PostRepository.GetAsync(id);
@@ -90,6 +97,7 @@ namespace SimpleBlog.Web.Controllers
         // POST: Posts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, EditPostViewModel viewModel)
@@ -120,6 +128,7 @@ namespace SimpleBlog.Web.Controllers
         }
         
         // GET: Posts/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int id)
         {
             var post = await _unitOfWork.PostRepository.GetAsync(id);
@@ -134,6 +143,7 @@ namespace SimpleBlog.Web.Controllers
         // POST: Posts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             _unitOfWork.PostRepository.Delete(id);
