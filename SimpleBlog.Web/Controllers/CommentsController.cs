@@ -23,13 +23,7 @@ namespace SimpleBlog.Web.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        
-        // GET: Comments/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-        
+
         // POST: Comments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -52,7 +46,7 @@ namespace SimpleBlog.Web.Controllers
                 return RedirectToAction("Details", "Posts", new {id = comment.PostId});
             }
             
-            return View(writableComment);
+            return NoContent();
         }
     }
 }
