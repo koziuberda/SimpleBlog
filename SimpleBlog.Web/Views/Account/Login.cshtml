@@ -29,6 +29,8 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
             <input type="submit" class="btn btn-primary" value="Login"/>
+            OR 
+            <a asp-controller="Account" asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a>
         </div>
     </div>
 </form>

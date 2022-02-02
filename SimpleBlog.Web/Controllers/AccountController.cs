@@ -16,10 +16,12 @@ namespace SimpleBlog.Web.Controllers
     public class AccountController : Controller
     {
         private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
-        public AccountController(SignInManager<User> signInManager)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         // GET
@@ -37,7 +39,6 @@ namespace SimpleBlog.Web.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(viewModel.Username, viewModel.Password, true, false);
-                Console.WriteLine(result.Succeeded);
                 if (result.Succeeded)
                 {
                     return LocalRedirect(viewModel.ReturnUrl ?? "/");
@@ -54,6 +55,44 @@ namespace SimpleBlog.Web.Controllers
         {
             await _signInManager.SignOutAsync();
             return LocalRedirect("/");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl)
+        {
+            return View(new RegisterViewModel { ReturnUrl = returnUrl });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(RegisterViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User
+                {
+                    UserName = viewModel.Username,
+                    Email = viewModel.Email,
+                    Firstname = viewModel.Name,
+                    Lastname = viewModel.Surname,
+                    EmailConfirmed = true
+                };
+
+                var result = await _userManager.CreateAsync(user, viewModel.Password);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, true);
+                    return LocalRedirect(viewModel.ReturnUrl ?? "/");
+                }
+
+                foreach (var identityError in result.Errors)
+                {
+                    ModelState.AddModelError("", identityError.Description);
+                }
+            }
+            
+            return View(viewModel);
         }
     }
 }
